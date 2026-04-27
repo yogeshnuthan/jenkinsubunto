@@ -1,0 +1,29 @@
+public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, Jenkins on Ubuntu!");
+    }
+}
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Pull code from Git (optional)
+                git 'https://github.com/your-repo/sample-java-project.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'javac HelloWorld.java'
+            }
+        }
+
+        stage('Run') {
+            steps {
+                sh 'java HelloWorld'
+            }
+        }
+    }
+}
